@@ -1,0 +1,1 @@
+Please, download the datasets depicted in the main page, and follow `prepare_partitions.py` to create the pre-training partitions.
