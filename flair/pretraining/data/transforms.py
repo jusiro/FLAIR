@@ -11,7 +11,7 @@ import copy
 
 from PIL import Image
 from torchvision.transforms import Resize
-from flair.prompts.dictionary import definitions
+from flair.modeling.dictionary import definitions
 from kornia.augmentation import RandomHorizontalFlip, RandomAffine, ColorJitter
 
 # Augmentations for pretraining

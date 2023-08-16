@@ -13,7 +13,7 @@ import torch
 from flair.modeling.model import FLAIRModel
 from flair.transferability.data.dataloader import get_dataloader_splits
 from flair.utils.metrics import evaluate, average_folds_results, save_results
-from flair.utils.misc import set_seeds
+from flair.modeling.misc import set_seeds
 from flair.transferability.modeling.adapters import LinearProbe, ClipAdapter, ZeroShot, TipAdapter
 from flair.transferability.modeling.finetuning import FineTuning
 

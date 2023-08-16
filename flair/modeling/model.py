@@ -7,9 +7,9 @@ import torchvision
 import numpy as np
 import os
 
-from flair.prompts.dictionary import definitions
-import flair.utils.constants as constants
-from flair.utils.misc import wget_gdrive_secure
+from .dictionary import definitions
+from . import constants
+from .misc import wget_gdrive_secure
 
 from torch.cuda.amp import autocast
 from tqdm import tqdm
