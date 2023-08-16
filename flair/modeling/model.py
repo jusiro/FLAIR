@@ -78,7 +78,7 @@ class FLAIRModel(torch.nn.Module):
                     Path(input_dir).mkdir(parents=True, exist_ok=True)
 
                 # download url link
-                wget_gdrive_secure(pretrained_url_id, input_dir + "weights.zip")
+                wget_gdrive_secure(pretrained_url_id, input_dir, filename="weights.zip")
 
                 # unzip
                 zipf = zipfile.ZipFile(input_dir + "weights.zip")

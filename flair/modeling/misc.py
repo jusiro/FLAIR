@@ -31,11 +31,15 @@ Download FLAIR pre-trained weights.
 """
 
 
-def wget_gdrive_secure(fileid, filename):
+def wget_gdrive_secure(fileid, input_dir, filename):
 
-    os.system("wget --save-cookies cookies.txt 'https://docs.google.com/uc?export=download&id='$fileid -O- | "
-              "sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1/p' > confirm.txt".replace("$fileid", fileid))
+    os.system("wget --save-cookies COOKIES_PATH 'https://docs.google.com/uc?export=download&id='$fileid -O- | "
+              "sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1/p' > CONFIRM_PATH".
+              replace("$fileid", fileid).replace("COOKIES_PATH", input_dir + "cookies.txt").
+              replace("CONFIRM_PATH", input_dir + "confirm.txt"))
 
-    os.system("wget --load-cookies cookies.txt -O $filename"
-              " 'https://docs.google.com/uc?export=download&id='$fileid'&confirm='$(<confirm.txt)"
-              .replace("$fileid", fileid).replace("$filename", filename))
+    os.system("wget --load-cookies COOKIES_PATH -O $filename"
+              " 'https://docs.google.com/uc?export=download&id='$fileid'&confirm='$(<CONFIRM_PATH)"
+              .replace("$fileid", fileid).replace("$filename", input_dir + filename).
+              replace("COOKIES_PATH", input_dir + "cookies.txt").
+              replace("CONFIRM_PATH", input_dir + "confirm.txt"))
