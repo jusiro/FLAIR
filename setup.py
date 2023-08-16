@@ -6,6 +6,6 @@ with open("requirements.txt") as f:
 setup(
     name="flair",
     version="0.1.0",
-    packages=find_packages(),
+    packages=find_packages(where="./flair/"),
     install_requires=requirements,
 )
