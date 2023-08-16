@@ -24,8 +24,6 @@ conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 cudatoolkit
 * Install FLAIR library.
 ```
 pip install git+https://github.com/jusiro/FLAIR.git
-# or
-pip install FLAIR
 ```
 
 ## Usage
@@ -40,7 +38,9 @@ from flair import FLAIRModel
 # Set model
 model = FLAIRModel(from_checkpoint=True)
 
-# Load image and set target categories
+# Load image and set target categories 
+(if the repo is not cloned, download the image and change the path!)
+
 image = np.array(Image.open("./documents/sample_macular_hole.png"))
 text = ["normal", "healthy", "macular edema", "diabetic retinopathy", "glaucoma", "macular hole",
         "lesion", "lesion in the macula"]
