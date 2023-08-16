@@ -13,6 +13,7 @@ from .misc import wget_gdrive_secure
 
 from torch.cuda.amp import autocast
 from tqdm import tqdm
+from pathlib import Path
 from transformers import AutoModel, AutoTokenizer, logging
 logging.set_verbosity_error()
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
@@ -74,7 +75,7 @@ class FLAIRModel(torch.nn.Module):
 
             if not os.path.exists(input_dir + pretrained_id):
                 if not os.path.exists(input_dir):
-                    os.makedirs(input_dir)
+                    Path(input_dir).mkdir(parents=True, exist_ok=True)
 
                 # download url link
                 wget_gdrive_secure(pretrained_url_id, input_dir + "weights.zip")
