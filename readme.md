@@ -35,7 +35,7 @@ from PIL import Image
 import numpy as np
 
 # Import FLAIR
-from flair.modeling.model import FLAIRModel
+from flair import FLAIRModel
 
 # Set model
 model = FLAIRModel(from_checkpoint=True)
