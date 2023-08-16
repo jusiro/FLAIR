@@ -14,7 +14,7 @@
 
 ## Install FLAIR
 
-`* `Install in your enviroment a compatible torch version with your GPU. For example:
+* Install in your enviroment a compatible torch version with your GPU. For example:
 ```
 conda create -n flair_env python=3.8 -y
 conda activate flair_env
