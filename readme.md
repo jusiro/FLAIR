@@ -39,7 +39,7 @@ from flair import FLAIRModel
 model = FLAIRModel(from_checkpoint=True)
 
 # Load image and set target categories 
-(if the repo is not cloned, download the image and change the path!)
+# (if the repo is not cloned, download the image and change the path!)
 
 image = np.array(Image.open("./documents/sample_macular_hole.png"))
 text = ["normal", "healthy", "macular edema", "diabetic retinopathy", "glaucoma", "macular hole",
