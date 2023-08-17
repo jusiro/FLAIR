@@ -10,7 +10,7 @@
 [Jose Dolz<sup>1</sup>](https://scholar.google.es/citations?user=yHQIFFMAAAAJ&hl),
 [Ismail Ben Ayed<sup>1</sup>](https://scholar.google.es/citations?user=29vyUccAAAAJ&hl) <br/>
 [<sup>1</sup>LIVIA - ETS Montreal](https://liviamtl.ca/), [<sup>2</sup>DIAGNOS  Inc.](https://www.diagnos.com/)<br/>
-[Project](https://jusiro.github.io/projects/flair) | [Paper](https://arxiv.org/pdf/2308.07898.pdf) | [Code](https://github.com/jusiro/fewshot-finetuning) | [Tutorials](https://colab.research.google.com/drive/1LE50MQmsEQxMM-qvytXGeJ9WAu09w1MR?usp=sharing) |
+| [Project](https://jusiro.github.io/projects/flair) | [Paper](https://arxiv.org/pdf/2308.07898.pdf) | [Code](https://github.com/jusiro/FLAIR) | [Tutorials](https://colab.research.google.com/drive/1LE50MQmsEQxMM-qvytXGeJ9WAu09w1MR?usp=sharing) |
 
 ## Install FLAIR
 
