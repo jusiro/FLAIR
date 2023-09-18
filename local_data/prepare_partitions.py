@@ -61,6 +61,8 @@ def adequate_02_messidor():
 
     path_dataset = "02_MESSIDOR/"
 
+    # The link to MESSIDOR2 labels is at:
+    # https://www.kaggle.com/datasets/google-brain/messidor2-dr-grades?select=messidor_data.csv
     dataframe = pd.read_csv(PATH_DATASETS + path_dataset + "messidor_data.csv")
 
     data = []
