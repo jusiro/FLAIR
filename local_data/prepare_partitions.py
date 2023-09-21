@@ -291,8 +291,8 @@ def adequate_05_1000x39():
     df_out.to_csv(PATH_DATAFRAME_TRANSFERABILITY_CLASSIFICATION + "05_20x4.csv")
 
 
-def adequate_06_eyenet():
-    path_dataset = "06_EYENET/"
+def adequate_06_DEN():
+    path_dataset = "06_DEN/"
     data = []
 
     partitions = ["DeepEyeNet_train.json", "DeepEyeNet_test.json", "DeepEyeNet_valid.json"]
@@ -318,7 +318,7 @@ def adequate_06_eyenet():
                              "categories": categories})
 
     df_out = pd.DataFrame(data)
-    df_out.to_csv(PATH_DATAFRAME_PRETRAIN + "06_EYENET.csv")
+    df_out.to_csv(PATH_DATAFRAME_PRETRAIN + "06_DEN.csv")
 
 
 def adequate_07_lag():

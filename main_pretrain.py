@@ -37,7 +37,7 @@ def main():
     parser.add_argument('--data_root_path', default=PATH_DATASETS)
     parser.add_argument('--dataframes_path', default=PATH_DATAFRAME_PRETRAIN)
     parser.add_argument('--datasets', default=["01_EYEPACS", "03_IDRID", "04_RFMid", "05_1000x39",
-                                               "06_EYENET", "07_LAG", "08_ODIR", "09_PAPILA", "10_PARAGUAY",
+                                               "06_DEN", "07_LAG", "08_ODIR", "09_PAPILA", "10_PARAGUAY",
                                                "11_STARE", "12_ARIA", "14_AGAR300", "15_APTOS", "16_FUND-OCT",
                                                "17_DiaRetDB1", "18_DRIONS-DB", "19_Drishti-GS1",
                                                "20_E-ophta", "21_G1020", "23_HRF", "24_ORIGA", "26_ROC",
