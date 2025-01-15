@@ -4,13 +4,14 @@
 
 <b>A Foundation LAnguage Image model of the Retina (FLAIR):</b> <br/>
 <b>Encoding expert knowledge in text supervision</b> <br/>
+📜 <span style="color:red">*Published in Medical Image Analysis*</span> \
 [Julio Silva-Rodríguez<sup>1</sup>](https://scholar.google.es/citations?user=1UMYgHMAAAAJ&hl),
 [Hadi Chakor<sup>2</sup>](https://scholar.google.ca/citations?user=0Njg-cQAAAAJ&hl),
 [Riadh Kobbi<sup>2</sup>](https://ca.linkedin.com/in/riadh-kobbi),
 [Jose Dolz<sup>1</sup>](https://scholar.google.es/citations?user=yHQIFFMAAAAJ&hl),
 [Ismail Ben Ayed<sup>1</sup>](https://scholar.google.es/citations?user=29vyUccAAAAJ&hl) <br/>
-[<sup>1</sup>LIVIA - ETS Montreal](https://liviamtl.ca/), [<sup>2</sup>DIAGNOS  Inc.](https://www.diagnos.com/)<br/>
-| [Project](https://jusiro.github.io/projects/flair) | [Paper](https://www.sciencedirect.com/science/article/pii/S1361841524002822) | [ArXiv Version](https://arxiv.org/pdf/2308.07898.pdf) | [Code](https://github.com/jusiro/FLAIR) | [Tutorials](https://colab.research.google.com/drive/1LE50MQmsEQxMM-qvytXGeJ9WAu09w1MR?usp=sharing) |
+[<sup>1</sup>ÉTS Montréal](https://www.etsmtl.ca/), [<sup>2</sup>DIAGNOS  Inc.](https://www.diagnos.com/)<br/>
+| [Project](https://jusiro.github.io/projects/flair) | [Journal](https://www.sciencedirect.com/science/article/pii/S1361841524002822) | [ArXiv](https://arxiv.org/pdf/2308.07898.pdf) | [Code](https://github.com/jusiro/FLAIR) | [Tutorials](https://colab.research.google.com/drive/1LE50MQmsEQxMM-qvytXGeJ9WAu09w1MR?usp=sharing) |
 
 ## Install FLAIR
 
