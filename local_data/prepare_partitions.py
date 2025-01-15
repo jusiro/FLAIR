@@ -1148,34 +1148,6 @@ def adequate_37_DeepDRiD():
     df_out.to_csv(PATH_DATAFRAME_TRANSFERABILITY_CLASSIFICATION + "37_DeepDRiD_test.csv")
 
 
-def adequate_mmac_segmentation():
-    path_dataset = "101_MMAC23/"
-    data = []
-
-    # A.Segmentation
-    subpath = "2. Segmentation of Myopic Maculopathy Plus Lesions/"
-    subpath_images = "1. Images/"
-    subpath_masks = "2. Groundtruths/"
-
-    categories_paths = ["1. Lacquer Cracks/", "2. Choroidal Neovascularization/", "3. Fuchs Spot/"]
-    annotations_abbreviations = ["LC", "CN", "FS"]
-
-    subpath_partitions = "1. Training Set/"
-
-    for iCategory in range(len(categories_paths)):
-        data = []
-        files = os.listdir(PATH_DATASETS + path_dataset + subpath + categories_paths[iCategory] + subpath_images + subpath_partitions)
-
-        for iFile in files:
-            image_path = path_dataset + subpath + categories_paths[iCategory] + subpath_images + subpath_partitions + iFile
-            mask_path = image_path.replace(subpath_images, subpath_masks)
-            data.append({"image": image_path,
-                         "mask": mask_path})
-
-        df_out = pd.DataFrame(data)
-        df_out.to_csv(PATH_DATAFRAME_TRANSFERABILITY_SEGMENTATION + "mmac_" + annotations_abbreviations[iCategory] + "_segmentation.csv")
-
-
 def adequate_CGI_HRDC():
 
     # TASK 1

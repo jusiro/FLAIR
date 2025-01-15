@@ -280,7 +280,8 @@ class FLAIRModel(torch.nn.Module):
             if domain_knowledge and categories[iKey] in list(definitions.keys()):
                 descriptions = definitions[categories[iKey]]
                 if categories[iKey] not in descriptions:
-                    descriptions.append(categories[iKey])
+                    if "myopic maculopathy" not in categories[iKey]:  # class names for MMAC are not informative.
+                        descriptions.append(categories[iKey])
             else:
                 descriptions = [categories[iKey]]
 

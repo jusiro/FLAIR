@@ -153,8 +153,14 @@ definitions = {"no diabetic retinopathy": ["no diabetic retinopathy", "no microa
                                                       "flame-shaped haemorrhages"],
                 "malignant hypertensive retinopathy": ["severe arteriovenous ratio", "severe tortuosity",
                                                        "swelling optical disk",
-                                                       "flame-shaped haemorrhages"]
+                                                       "flame-shaped haemorrhages"],
+                "myopic maculopathy grade cero": ["healthy macula"],
+                "myopic maculopathy grade one": ["tessellated fundus"],
+                "myopic maculopathy grade two": ["diffuse chorioretinal atrophy"],
+                "myopic maculopathy grade three": ["patchy chorioretinal atrophy"],
+                "myopic maculopathy grade four": ["macular atrophy"],
             }
+
 
 # Datasets names
 datasets = ["01_EYEPACS", "03_IDRID", "04_RFMid", "05_1000x39", "07_LAG", "09_PAPILA", "10_PARAGUAY", "12_ARIA",

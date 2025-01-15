@@ -127,7 +127,7 @@ def save_results(metrics, out_path, id_experiment=None, id_metrics=None, save_mo
 
     # Create results folder
     if not os.path.isdir(out_path):
-        os.mkdir(out_path)
+        os.makedirs(out_path)
 
     # Create experiments folder in results
     if id_experiment is None:
@@ -137,7 +137,7 @@ def save_results(metrics, out_path, id_experiment=None, id_metrics=None, save_mo
 
     # Create main experiment folder
     if not os.path.isdir(out_path + id_experiment):
-        os.mkdir(out_path + id_experiment)
+        os.makedirs(out_path + id_experiment)
 
     # Store metrics in experiment dataset
     with open(out_path + id_experiment + '/metrics_' + id_metrics + '.json', 'w') as fp:

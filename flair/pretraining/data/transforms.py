@@ -29,7 +29,7 @@ class LoadImage():
 
     def __call__(self, data):
         # Read image
-        img = np.array(Image.open(data[self.target]), dtype=float)
+        img = np.array(Image.open(data[self.target]).convert('RGB'), dtype=float)
         if np.max(img) > 1:
             img /= 255
 

@@ -80,8 +80,8 @@ def process(args):
 
         # Init FLAIR model
         model = FLAIRModel(from_checkpoint=args.load_weights, weights_path=args.weights_path,
-                      projection=args.project_features, norm_features=args.norm_features,
-                      vision_pretrained=args.init_imagenet)
+                           projection=args.project_features, norm_features=args.norm_features,
+                           vision_pretrained=args.init_imagenet)
 
         # Set datasets
         args.loaders = get_dataloader_splits(args.setting["dataframe"], args.data_root_path, args.setting["targets"],
@@ -159,21 +159,19 @@ def main():
     parser.add_argument('--save_model', default=False, type=lambda x: (str(x).lower() == 'true'))
 
     # Experiment
-    parser.add_argument('--experiment', default='08_ODIR200x3',
-                        help='02_MESSIDOR - 13_FIVES - 25_REFUGE - 08_ODIR200x3 - 05_20x3')
+    parser.add_argument('--experiment', default='02_MESSIDOR',
+                        help='02_MESSIDOR - 13_FIVES - 25_REFUGE - 08_ODIR200x3 - 05_20x3 - 38_MMAC23_train')
     parser.add_argument('--experiment_test', default='',
-                        help='02_MESIDOR, 37_DeepDRiD_online_test',
+                        help='02_MESIDOR, 37_DeepDRiD_online_test, 38_MMAC23A_test, 38_MMAC23B_test',
                         type=lambda s: [item for item in s.split(',')])
-    parser.add_argument('--method', default='zero_shot',
-                        help='lp - tipAdapter - tipAdapter-f - clipAdapter'
-                             'FT - FT_last - LP_FT -LP_FT_bn_last - FT_freeze_all'
-                             'zero_shot -')
+    parser.add_argument('--method', default='FT',
+                        help='lp - tipAdapter - tipAdapter-f - clipAdapter - FT - zero_shot -')
 
     # Model base weights and architecture
     parser.add_argument('--weights_path', default=None, help='./local_data/results/pretraining/resnet_v2_epoch15.pth')
     parser.add_argument('--load_weights', default=True, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--init_imagenet', default=True, type=lambda x: (str(x).lower() == 'true'))
-    parser.add_argument('--architecture', default='resnet_v1', help='resnet_v1 -- efficientnet')
+    parser.add_argument('--architecture', default='resnet_v1', help='resnet_v1')
     parser.add_argument('--project_features', default=True, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--norm_features', default=True, type=lambda x: (str(x).lower() == 'true'))
 

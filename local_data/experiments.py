@@ -56,7 +56,24 @@ def get_experiment_setting(experiment):
                    "targets": {"no diabetic retinopathy": 0, "mild diabetic retinopathy": 1,
                                "moderate diabetic retinopathy": 2, "severe diabetic retinopathy": 3,
                                "proliferative diabetic retinopathy": 4}}
-
+    elif experiment == "38_MMAC23A_train":
+        setting = {"dataframe": PATH_DATAFRAME_TRANSFERABILITY_CLASSIFICATION + "38_MMAC23A_train.csv",
+                   "task": "classification",
+                   "targets": {"myopic maculopathy grade cero": 0, "myopic maculopathy grade one": 1,
+                               "myopic maculopathy grade two": 2, "myopic maculopathy grade three": 3,
+                               "myopic maculopathy grade four": 4}}
+    elif experiment == "38_MMAC23A_test":
+        setting = {"dataframe": PATH_DATAFRAME_TRANSFERABILITY_CLASSIFICATION + "38_MMAC23A_test.csv",
+                   "task": "classification",
+                   "targets": {"myopic maculopathy grade cero": 0, "myopic maculopathy grade one": 1,
+                               "myopic maculopathy grade two": 2, "myopic maculopathy grade three": 3,
+                               "myopic maculopathy grade four": 4}}
+    elif experiment == "38_MMAC23B_test":
+        setting = {"dataframe": PATH_DATAFRAME_TRANSFERABILITY_CLASSIFICATION + "38_MMAC23B_test.csv",
+                   "task": "classification",
+                   "targets": {"myopic maculopathy grade cero": 0, "myopic maculopathy grade one": 1,
+                               "myopic maculopathy grade two": 2, "myopic maculopathy grade three": 3,
+                               "myopic maculopathy grade four": 4}}
     elif experiment == "CGI_HRDC_Task1":
         setting = {"dataframe": PATH_DATAFRAME_TRANSFERABILITY_CLASSIFICATION + "CGI_HRDC_Task1.csv",
                    "task": "classification",
