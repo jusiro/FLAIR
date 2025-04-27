@@ -14,6 +14,9 @@ from torchvision.transforms import Resize
 from flair.modeling.dictionary import definitions
 from kornia.augmentation import RandomHorizontalFlip, RandomAffine, ColorJitter
 
+from skimage.measure import regionprops, label
+from skimage.filters import threshold_li
+
 # Augmentations for pretraining
 augmentations_pretraining = torch.nn.Sequential(RandomHorizontalFlip(p=0.5),
                                                 RandomAffine(p=0.25, degrees=(-5, 5), scale=(0.9, 1)),
@@ -21,8 +24,10 @@ augmentations_pretraining = torch.nn.Sequential(RandomHorizontalFlip(p=0.5),
 
 
 class LoadImage():
-    def __init__(self, target="image_path"):
+    def __init__(self, target="image_path", crop_background=False):
         self.target = target
+        self.crop = crop_background
+
         """
         Load, organize channels, and standardize intensity of images.
         """
@@ -44,6 +49,10 @@ class LoadImage():
         if "image" in self.target:
             if img.shape[0] < 3:
                 img = np.repeat(img, 3, axis=0)
+
+        # Image cropping - remove black background (might be unnecessary for some dataset)
+        if self.crop:
+            img = crop_im(img)
 
         data[self.target.replace("_path", "")] = img
         return data
@@ -141,3 +150,29 @@ class SelectRelevantKeys():
     def __call__(self, data):
         d = {key: data[key] for key in self.target_keys}
         return d
+
+
+def crop_im(img):
+
+    # Take red component and produce binary mask
+    t = threshold_li(img[0, :, :])
+    binary = img[0, :, :] > t
+    binary = getLargestCC(binary)  # Computing regionprops only for the largest element.
+
+    # Retrieve regions and keep largest
+    label_img = label(binary)
+    regions = regionprops(label_img)
+    areas = [r.area for r in regions]
+    largest_cc_idx = np.argmax(areas)
+    fov = regions[largest_cc_idx]
+
+    # Crop original image
+    cropped = img[:, fov.bbox[0]:fov.bbox[2], fov.bbox[1]: fov.bbox[3]]
+
+    return cropped
+
+
+def getLargestCC(segmentation):
+    labels = label(segmentation)
+    largestCC = labels == np.argmax(np.bincount(labels.flat, weights=segmentation.flat))
+    return largestCC

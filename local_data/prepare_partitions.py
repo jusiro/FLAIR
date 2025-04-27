@@ -28,6 +28,10 @@ if not os.path.exists(PATH_DATAFRAME_TRANSFERABILITY_SEGMENTATION):
 
 
 def adequate_01_eyepacs():
+
+    # Note: if you are missing some labels for the test dataframe, you may want to check this link:
+    # https://www.kaggle.com/competitions/diabetic-retinopathy-detection/discussion/16149
+
     labels_dr = {0: "no diabetic retinopathy", 1: "mild diabetic retinopathy", 2: "moderate diabetic retinopathy",
                  3: "severe diabetic retinopathy", 4: "proliferative diabetic retinopathy"}
     path_dataset = "01_EYEPACS/"

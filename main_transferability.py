@@ -89,7 +89,8 @@ def process(args):
                                              shots_test=args.shots_test, balance=args.balance,
                                              batch_size=args.batch_size, num_workers=args.num_workers, seed=iFold,
                                              task=args.setting["task"], size=args.size,
-                                             resize_canvas=args.resize_canvas, batch_size_test=args.batch_size_test)
+                                             resize_canvas=args.resize_canvas, batch_size_test=args.batch_size_test,
+                                             crop_background=args.crop_background)
 
         # Set adapter
         adapter = init_adapter(model, args)
@@ -122,7 +123,8 @@ def process(args):
                                                          batch_size_test=args.batch_size_test,
                                                          num_workers=args.num_workers, seed=iFold,
                                                          task=args.setting["task"], size=args.size,
-                                                         resize_canvas=args.resize_canvas)
+                                                         resize_canvas=args.resize_canvas,
+                                                         crop_background=args.crop_background)
                 # Test model - predict and evaluate
                 refs, preds = adapter.predict(loaders_external["test"])
                 metrics = evaluate(refs, preds, args.setting["task"])
@@ -164,7 +166,7 @@ def main():
     parser.add_argument('--experiment_test', default='',
                         help='02_MESIDOR, 37_DeepDRiD_online_test, 38_MMAC23A_test, 38_MMAC23B_test',
                         type=lambda s: [item for item in s.split(',')])
-    parser.add_argument('--method', default='FT',
+    parser.add_argument('--method', default='zero_shot',
                         help='lp - tipAdapter - tipAdapter-f - clipAdapter - FT - zero_shot -')
 
     # Model base weights and architecture
@@ -184,7 +186,8 @@ def main():
     parser.add_argument('--batch_size', default=4, type=int)
     parser.add_argument('--batch_size_test', default=4, type=int)
     parser.add_argument('--size', default=(512, 512), help="(512, 512) | (2048, 4096) ")
-    parser.add_argument('--resize_canvas', default=False, type=lambda x: (str(x).lower() == 'true'))
+    parser.add_argument('--crop_background', default=True, type=lambda x: (str(x).lower() == 'true'))
+    parser.add_argument('--resize_canvas', default=True, type=lambda x: (str(x).lower() == 'true'))
 
     # Vision adapters setting
     parser.add_argument('--domain_knowledge', default=True, type=lambda x: (str(x).lower() == 'true'))
@@ -206,7 +209,7 @@ def main():
     parser.add_argument('--test_from_folder', default=[], type=list)
 
     # Resources
-    parser.add_argument('--num_workers', default=0, type=int, help='workers number for DataLoader')
+    parser.add_argument('--num_workers', default=8, type=int, help='workers number for DataLoader')
 
     args, unknown = parser.parse_known_args()
 

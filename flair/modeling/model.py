@@ -87,7 +87,7 @@ class FLAIRModel(torch.nn.Module):
                 print('\n Download model to:', input_dir + pretrained_id)
 
         state_dict = torch.load(weights_path)
-        self.load_state_dict(state_dict, strict=True)
+        self.load_state_dict(state_dict, strict=False)
         print('load model weight from:', weights_path)
 
     def softce_clip_loss(self, logits_per_text, target_pseudo):
