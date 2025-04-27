@@ -90,7 +90,7 @@ def process(args):
                                              batch_size=args.batch_size, num_workers=args.num_workers, seed=iFold,
                                              task=args.setting["task"], size=args.size,
                                              resize_canvas=args.resize_canvas, batch_size_test=args.batch_size_test,
-                                             crop_background=args.crop_background)
+                                             crop_foreground=args.crop_foreground)
 
         # Set adapter
         adapter = init_adapter(model, args)
@@ -124,7 +124,7 @@ def process(args):
                                                          num_workers=args.num_workers, seed=iFold,
                                                          task=args.setting["task"], size=args.size,
                                                          resize_canvas=args.resize_canvas,
-                                                         crop_background=args.crop_background)
+                                                         crop_foreground=args.crop_foreground)
                 # Test model - predict and evaluate
                 refs, preds = adapter.predict(loaders_external["test"])
                 metrics = evaluate(refs, preds, args.setting["task"])
@@ -186,7 +186,7 @@ def main():
     parser.add_argument('--batch_size', default=4, type=int)
     parser.add_argument('--batch_size_test', default=4, type=int)
     parser.add_argument('--size', default=(512, 512), help="(512, 512) | (2048, 4096) ")
-    parser.add_argument('--crop_background', default=True, type=lambda x: (str(x).lower() == 'true'))
+    parser.add_argument('--crop_foreground', default=True, type=lambda x: (str(x).lower() == 'true'))
     parser.add_argument('--resize_canvas', default=True, type=lambda x: (str(x).lower() == 'true'))
 
     # Vision adapters setting

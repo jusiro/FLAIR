@@ -24,9 +24,9 @@ augmentations_pretraining = torch.nn.Sequential(RandomHorizontalFlip(p=0.5),
 
 
 class LoadImage():
-    def __init__(self, target="image_path", crop_background=False):
+    def __init__(self, target="image_path", crop_foreground=False):
         self.target = target
-        self.crop = crop_background
+        self.crop = crop_foreground
 
         """
         Load, organize channels, and standardize intensity of images.

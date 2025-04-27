@@ -16,11 +16,11 @@ from flair.pretraining.data.transforms import LoadImage, ImageScaling, CopyDict
 
 def get_dataloader_splits(dataframe_path, data_root_path, targets_dict, shots_train="80%", shots_val="0%",
                           shots_test="20%", balance=False, batch_size=8, num_workers=0, seed=0, task="classification",
-                          size=(512, 512), resize_canvas=False, batch_size_test=1, crop_background=False):
+                          size=(512, 512), resize_canvas=False, batch_size_test=1, crop_foreground=False):
 
     # Prepare data transforms for pre-processing
     if task == "classification":
-        transforms = Compose([CopyDict(), LoadImage(crop_background=crop_background), ImageScaling(size=size)])
+        transforms = Compose([CopyDict(), LoadImage(crop_foreground=crop_foreground), ImageScaling(size=size)])
     elif task == "segmentation":
         transforms = Compose([CopyDict(), LoadImage(target="image_path"), LoadImage(target="mask_path"),
                               ImageScaling(size=size, target="image", canvas=resize_canvas),
