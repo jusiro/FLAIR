@@ -15,16 +15,19 @@ from torch.cuda.amp import autocast
 from tqdm import tqdm
 from pathlib import Path
 from transformers import AutoModel, AutoTokenizer, logging
+from huggingface_hub import PyTorchModelHubMixin
+
 logging.set_verbosity_error()
 os.environ["TOKENIZERS_PARALLELISM"] = "false"
+os.environ["TRANSFORMERS_VERBOSITY"] = "error"
 
 # Device for training/inference
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
 
 
-class FLAIRModel(torch.nn.Module):
+class FLAIRModel(torch.nn.Module, PyTorchModelHubMixin):
     def __init__(self, vision_type='resnet_v1', bert_type='emilyalsentzer/Bio_ClinicalBERT', vision_pretrained=True,
-                 proj_dim=512, proj_bias=False, logit_scale_init_value=0.07, from_checkpoint=True, weights_path=None,
+                 proj_dim=512, proj_bias=False, logit_scale_init_value=0.07, from_checkpoint=False, weights_path=None,
                  out_path=None, image_size=512, caption="A fundus photograph of [CLS]", projection=True,
                  norm_features=True):
         super().__init__()
@@ -41,7 +44,7 @@ class FLAIRModel(torch.nn.Module):
         self.out_path = out_path
         self.image_size = image_size
         self.caption = caption
-        # Use of projection head and feature normalization on visione encoder
+        # Use of projection head and feature normalization on vision encoder
         # (only relevant during transferability stage)
         self.projection = projection
         self.norm_features = norm_features
@@ -56,9 +59,11 @@ class FLAIRModel(torch.nn.Module):
         # learnable temperature for contrastive loss
         self.logit_scale = torch.nn.Parameter(torch.log(torch.tensor(1/self.logit_scale_init_value)))
 
-        # Load pretrained weights
         if from_checkpoint:
-            self.load_from_pretrained(self.weights_path)
+            try:
+                self.from_pretrained("jusiro2/FLAIR")
+            except:
+                self.load_from_pretrained(self.weights_path)
 
         # Set model to device
         self.to(device)
@@ -304,7 +309,7 @@ class FLAIRModel(torch.nn.Module):
 
 
 class VisionModel(torch.nn.Module):
-    def __init__(self, vision_type='resnet', pretrained=True, proj_dim=512, proj_bias=False, projection=True,
+    def __init__(self, vision_type='resnet_v1', pretrained=True, proj_dim=512, proj_bias=False, projection=True,
                  norm=True):
         super().__init__()
         self.proj_dim = proj_dim
@@ -323,7 +328,6 @@ class VisionModel(torch.nn.Module):
                 weights = 'IMAGENET1K_V2' if pretrained else None
             else:
                 weights = 'IMAGENET1K_V1' if pretrained else None
-            print("Pretrained weights: " + str(weights))
             self.model = torchvision.models.resnet50(weights=weights)
             # Set number of extracted features
             self.vision_dim = 2048

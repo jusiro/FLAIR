@@ -19,7 +19,7 @@
 ```
 conda create -n flair_env python=3.11 -y
 conda activate flair_env
-conda install pytorch==2.0.1 torchvision==0.15.2 torchaudio==2.0.2 pytorch-cuda=11.7 -c pytorch -c nvidia
+pip install torch==2.6.0 torchvision==0.21.0 torchaudio==2.6.0 --index-url https://download.pytorch.org/whl/cu124
 ```
 
 * Install FLAIR library.
@@ -37,7 +37,7 @@ import numpy as np
 from flair import FLAIRModel
 
 # Set model
-model = FLAIRModel(from_checkpoint=True)
+model = FLAIRModel.from_pretrained("jusiro2/FLAIR")
 
 # Load image and set target categories 
 # (if the repo is not cloned, download the image and change the path!)
@@ -54,14 +54,6 @@ print(logits.round(3)) # [[-0.32  -2.782  3.164  4.388  5.919  6.639  6.579 10.4
 print("Probabilities:")
 print(probs.round(3))  # [[0.      0.     0.001  0.002  0.01   0.02   0.019  0.948]]
 ```
-
-## **Note**: problems during automatic **pre-trained weights download**
-
-If you encounter any issue while downloading the **pre-trained weights** (i.e. `from_checkpoint=True`), you can manually download the weights from the following links (see Table), unzip the file, and store them at: `./flair/modeling/flair_pretrained_weights/[ID].pth`.
-
-| Backbone  |      ID      |                                                                                               |
-|-----------|:------------:|:---------------------------------------------------------------------------------------------:|
-| ResNet-50 | flair_resnet | [LINK](https://drive.google.com/file/d/1l24_2IzwQdnaa034I0zcyDLs_zMujsbR/view?usp=drive_link) |
 
 ## Pre-training and transferability
 

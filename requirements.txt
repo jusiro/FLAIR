@@ -5,4 +5,5 @@ tqdm~=4.64.1
 pandas~=1.5.3
 pillow~=10.3.0
 kornia~=0.6.12
-scikit-image==0.25.2
+scikit-image~=0.25.2
+safetensors~=0.7.0
