@@ -60,10 +60,7 @@ class FLAIRModel(torch.nn.Module, PyTorchModelHubMixin):
         self.logit_scale = torch.nn.Parameter(torch.log(torch.tensor(1/self.logit_scale_init_value)))
 
         if from_checkpoint:
-            try:
-                self.from_pretrained("jusiro2/FLAIR")
-            except:
-                self.load_from_pretrained(self.weights_path)
+            self.load_from_pretrained(self.weights_path)
 
         # Set model to device
         self.to(device)
