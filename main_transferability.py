@@ -79,9 +79,14 @@ def process(args):
         args.setting = get_experiment_setting(args.experiment)
 
         # Init FLAIR model
-        model = FLAIRModel(from_checkpoint=args.load_weights, weights_path=args.weights_path,
-                           projection=args.project_features, norm_features=args.norm_features,
-                           vision_pretrained=args.init_imagenet)
+        if (args.load_weights is True) and (args.weights_path is None):
+            model = FLAIRModel.from_pretrained("jusiro2/FLAIR")
+            model.project_features = args.project_features
+            model.norm_features = args.norm_features
+        else:
+            model = FLAIRModel(from_checkpoint=args.load_weights, weights_path=args.weights_path,
+                               projection=args.project_features, norm_features=args.norm_features,
+                               vision_pretrained=args.init_imagenet)
 
         # Set datasets
         args.loaders = get_dataloader_splits(args.setting["dataframe"], args.data_root_path, args.setting["targets"],
