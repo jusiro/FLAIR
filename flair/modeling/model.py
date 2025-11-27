@@ -254,7 +254,7 @@ class FLAIRModel(torch.nn.Module, PyTorchModelHubMixin):
         max_size = max(sizes)
         scale = max_size / self.image_size
         image = torchvision.transforms.Resize((int(image.shape[-2] / scale), int((image.shape[-1] / scale))),
-                                              antialias=False)(image)
+                                              antialias=True)(image)
         image = torch.nn.functional.pad(image, (0, self.image_size - image.shape[-1], 0, self.image_size - image.shape[-2], 0, 0))
 
         # Set format and device
