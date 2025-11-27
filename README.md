@@ -50,9 +50,9 @@ text = ["normal", "healthy", "macular edema", "diabetic retinopathy", "glaucoma"
 probs, logits = model(image, text)
 
 print("Image-Text similarities:")
-print(logits.round(3)) # [[-0.32  -2.782  3.164  4.388  5.919  6.639  6.579 10.478]]
+print(logits.round(3)) # [[-0.186 -3.092  3.357  4.444  6.223  7.493  7.028 11.395]]
 print("Probabilities:")
-print(probs.round(3))  # [[0.      0.     0.001  0.002  0.01   0.02   0.019  0.948]]
+print(probs.round(3))  # [[0.      0.     0.     0.001  0.005  0.019  0.012  0.962]]
 ```
 
 ## Pre-training and transferability
